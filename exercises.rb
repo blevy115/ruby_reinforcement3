@@ -21,6 +21,39 @@ puts train_111_direction = train_seperator(trains, "111", :direction)
 puts train_80B_frequence = train_seperator(trains, "80B", :frequency_in_minutes)
 puts train_610_direction = train_seperator(trains, "610", :direction)
 
+
+
+def train_direction_finder (trains, direction)
+  train_direction = []
+  trains.each do |train|
+  if train[:direction] == direction
+    train_direction << train
+  end
+  end
+  puts train_direction
+end
+
+train_direction_finder(trains, "north")
+
+train_direction_finder(trains, "east")
+
+
+def departure_time (trains, train_number, time)
+  trains.each do |train|
+    if train[:train] == train_number
+      train[:first_departure_time] = time
+    end
+  end
+end
+
+puts "What is the train number?"
+train_number = gets.chomp
+puts "Whats teh departure time?"
+time = gets.chomp
+
+puts departure_time(trains, train_number, time)
+
+#Practice runs
 # train_111={}
 # trains.select do |train|
 #   if train == {train: "111", frequency_in_minutes: 15, direction: "south"}
@@ -66,36 +99,7 @@ puts train_610_direction = train_seperator(trains, "610", :direction)
 #
 # puts train_east
 
-def train_direction_finder (trains, direction)
-  train_direction = []
-  trains.each do |train|
-  if train[:direction] == direction
-    train_direction << train
-  end
-  end
-  puts train_direction
-end
-
-train_direction_finder(trains, "north")
-
-train_direction_finder(trains, "east")
-
 # new_train = trains[0]
 # new_train[:first_departure_time] = 6
 # trains[0] = new_train
 # puts trains
-
-def departure_time (trains, train_number, time)
-  trains.each do |train|
-    if train[:train] == train_number
-      train[:first_departure_time] = time
-    end
-  end
-end
-
-puts "What is the train number?"
-train_number = gets.chomp
-puts "Whats teh departure time?"
-time = gets.chomp
-
-puts departure_time(trains, train_number, time)
